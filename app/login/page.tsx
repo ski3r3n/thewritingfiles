@@ -5,13 +5,16 @@ export default function Login() {
       <div className=" flex flex-col items-center justify-center min-h-screen py-2">
         <div className="bg-mist-800 p-6 rounded">
           <h1 className="text-3xl mb-0.5 font-bold w-max">Login</h1>
-          <h2 className="text-xl text-gray-600">
+          <h2 className="text-xl text-gray-400">
             What are we about to cook today twin?
           </h2>
-          <form className="mt-4" onSubmit={(e) => {
-            e.preventDefault();
-            window.location.href = "/dashboard"; // placeholder
-          }}>
+          <form
+            className="mt-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = "/dashboard"; // placeholder
+            }}
+          >
             <input
               type="text"
               placeholder="Username"

@@ -4,8 +4,8 @@ export default function Home() {
     <>
       <div className="flex items-center justify-center min-h-screen py-2">
         <div className="flex flex-col bg-mist-800 p-6 rounded">
-          <h1 className=" text-3xl mb-0.5 font-bold w-max">The Writing Files</h1>
-          <h2 className="text-xl text-gray-600">
+          <h1 className=" text-3xl mb-0.5 font-bold w-max">thewritingfiles</h1>
+          <h2 className="text-xl text-gray-400">
             Study gc lol, who let him cook
           </h2>
           <a href="/login" className="self-center h-min">
