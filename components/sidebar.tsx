@@ -9,12 +9,12 @@ import { PiSignOutBold } from "react-icons/pi";
 
 export default function Sidebar() {
   const pathname = usePathname();
-    const linkClass = (href: string) =>
-        `flex items-center px-4 py-2 rounded ${
-            pathname === href ? "bg-mist-900 text-white" : "text-mist-400 hover:text-white"
-        }`;
-
-
+  const linkClass = (href: string) =>
+    `flex items-center px-4 py-2 rounded 
+    ${pathname === href
+      ? "bg-mist-900 text-white"
+      : "text-mist-400 hover:text-white"
+    }`;
   return (
     <div className="w-64 h-screen bg-mist-800 text-mist-400 justify-center flex flex-col">
       <h2 className="text-2xl font-bold m-auto mb-5 text-white">
@@ -31,11 +31,11 @@ export default function Sidebar() {
 
         <li className="text-lg m-auto mb-5 w-min">
           <Link
-            href="/dashboard/writings"
-            className={linkClass("/dashboard/writings")}
+            href="/dashboard/write"
+            className={linkClass("/dashboard/write")}
           >
             <CgNotes className="mr-3" />
-            Writings
+            Write
           </Link>
         </li>
 
