@@ -2,7 +2,7 @@
 export default function Login() {
   return (
     <>
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <div className=" flex flex-col items-center justify-center min-h-screen py-2">
             <div className="bg-mist-800 p-6 rounded">
                 <h1 className="text-3xl mb-0.5 font-bold w-max">Login</h1>
                 <h2 className="text-xl text-gray-600">
