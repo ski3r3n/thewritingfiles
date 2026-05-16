@@ -6,7 +6,7 @@ export default function Write() {
     <>
       <div className="flex">
         <Sidebar />
-        <div className="flex-1 p-10">
+        <div className="flex-1 p-10 overflow-y-auto h-screen">
           <h1 className="text-3xl font-bold mb-4">Write</h1>
           <p>
             Write your thoughts, stories, or ideas here. This is your personal space to create and manage your writings. Whether it&apos;s a journal entry, a short story, or a poem, you can write it all here. Happy writing!
