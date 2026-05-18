@@ -19,7 +19,7 @@ export default function Writing() {
             </Link>
             <h2 className="text-xl text-gray-400">Date: 12/25/25</h2>
           </div>
-          <p className="text-lg max-w-5xl whitespace-pre-wrap">
+          <p className="text-lg w-full whitespace-pre-wrap">
             {`My hand has a mind of its own. “Will is a way.” Dull sparks ignite and vanish into air. Fireworks prevail, but their sparks ignite the cloth below. People laugh then scream in terror. Sleep that lasts too long is deserving of an ambulance. Everything is flammable, I know better than to play with fire. Dull sparks ignite, but vanish into air. Sometimes, I look up into the sky, an arsonist, ready to leap to another planet. The world goes up in smoke. However, neither can I fly, nor can I do rocket science.
 
 My hand has a mind of its own. Will is a way, and a waste of will is the gouging of eyes. Epiphyllum flowers bloom beautifully and die in an instant. I sit and mourn the ash that come of. Rain pours, but stops when it waters the plants, but continues when I'm wet. My mind is set ablaze, then extinguished by my hands. Miraculous.

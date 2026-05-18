@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/components/sidebar";
 import Card from "@/components/card";
+import Link from "next/link";
 export default function Dashboard() {
   // TODO: fetch and display writings, link to writing. blank as placeholder for now
   return (
@@ -30,6 +31,9 @@ export default function Dashboard() {
               href="/dashboard/3"
             />
           </div>
+          <Link className=" mt-4 rounded-lg p-4 flex items-center justify-center bg-mist-800" href="/dashboard/write">
+            + Create New Writing
+          </Link>
         </div>
       </div>
     </>

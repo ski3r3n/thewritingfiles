@@ -13,15 +13,26 @@ export default function Write() {
             className="mt-6"
             onSubmit={(e) => {
               e.preventDefault();
+              console.log(
+                "Title:",
+                (document.getElementById("title") as HTMLInputElement).value,
+              );
+              console.log(
+                "Content:",
+                (document.getElementById("content") as HTMLTextAreaElement)
+                  .value,
+              );
               window.location.href = "/dashboard/1"; // placeholder
             }}
           >
             <input
               type="text"
+              id="title"
               className="text-2xl mb-4 p-4 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Title"
             />
             <textarea
+              id="content"
               className="w-full h-64 p-4 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Some absolute peak?"
             />
