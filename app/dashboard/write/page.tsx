@@ -1,7 +1,25 @@
 "use client";
 import Sidebar from "@/components/sidebar";
+import { createClient } from "@/lib/supabase/client";
+
+const supabase = createClient();
+
+async function addWriting(title: string, content: string) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from("Writing")
+    .insert([{ user_id: user?.id, title: title, data: content }]);
+  console.log("Add writing response:", { data, error });
+  if (error) {
+    alert("Error saving writing: " + error.message);
+  } else {
+    alert("Writing saved successfully!");
+    window.location.href = "/dashboard";
+  }
+}
 export default function Write() {
-  // TODO: implement proper editor
   return (
     <>
       <div className="flex">
@@ -22,7 +40,11 @@ export default function Write() {
                 (document.getElementById("content") as HTMLTextAreaElement)
                   .value,
               );
-              window.location.href = "/dashboard/1"; // placeholder
+              addWriting(
+                (document.getElementById("title") as HTMLInputElement).value,
+                (document.getElementById("content") as HTMLTextAreaElement)
+                  .value,
+              );
             }}
           >
             <input

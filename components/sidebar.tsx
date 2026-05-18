@@ -6,7 +6,19 @@ import { usePathname } from "next/navigation";
 import { FiHome } from "react-icons/fi";
 import { CgNotes } from "react-icons/cg";
 import { PiSignOutBold } from "react-icons/pi";
+import { createClient } from "@/lib/supabase/client";
 
+const supabase = createClient();
+
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    alert("Error signing out: " + error.message);
+  } else {
+    alert("Successfully signed out!");
+    window.location.href = "/"; // Redirect to login page on successful logout
+  }
+}
 export default function Sidebar() {
   const pathname = usePathname();
   const linkClass = (href: string) =>
@@ -41,10 +53,13 @@ export default function Sidebar() {
         </li>
 
         <li className="text-lg mb-3 w-full">
-          <Link href="/" className={linkClass("/")}>
+          <button
+            onClick={signOut}
+            className="flex items-center px-4 py-2 rounded w-full text-mist-400 hover:text-white cursor-pointer"
+          >
             <PiSignOutBold className="mr-3" />
             Logout
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

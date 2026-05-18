@@ -1,4 +1,23 @@
 "use client";
+import { createClient } from "@/lib/supabase/client";
+
+const supabase = createClient();
+
+async function signInWithEmail(email: string, password: string) {
+  console.log("Signing in with email:", email);
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+  console.log("Sign-in response:", { data, error });
+  // Handle the response as needed, e.g., redirect on success or show error message
+  if (error) {
+    alert("Error signing in: " + error.message);
+  } else {
+    window.location.href = "/dashboard"; // Redirect to dashboard on successful login
+  }
+}
+
 export default function Login() {
   return (
     <>
@@ -12,16 +31,21 @@ export default function Login() {
             className="mt-4"
             onSubmit={(e) => {
               e.preventDefault();
-              window.location.href = "/dashboard"; // placeholder
+              const formData = new FormData(e.currentTarget);
+              const email = formData.get("email") as string;
+              const password = formData.get("password") as string;
+              signInWithEmail(email, password);
             }}
           >
             <input
               type="text"
+              name="email"
               placeholder="Username"
               className="w-full mb-4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
             />
             <input
               type="password"
+              name="password"
               placeholder="Password"
               className="w-full mb-4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
             />
