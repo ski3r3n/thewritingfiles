@@ -30,7 +30,7 @@ export default function Sidebar() {
     }`;
   return (
     <div className="min-w-64 h-screen bg-mist-800 text-mist-400 justify-center flex flex-col p-5">
-      <h2 className="text-2xl font-bold mb-5 mt-auto text-white">
+      <h2 className="text-2xl font-bold mb-5 mt-auto text-white ml-4">
         thewritingfiles
       </h2>
 
