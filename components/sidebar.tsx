@@ -29,7 +29,7 @@ export default function Sidebar() {
         : "text-mist-400 hover:text-white"
     }`;
   return (
-    <div className="w-64 h-screen bg-mist-800 text-mist-400 justify-center flex flex-col p-5">
+    <div className="min-w-64 h-screen bg-mist-800 text-mist-400 justify-center flex flex-col p-5">
       <h2 className="text-2xl font-bold mb-5 mt-auto text-white">
         thewritingfiles
       </h2>
