@@ -42,6 +42,41 @@ export default function Write() {
     };
   }, [content, isSaving]);
 
+  useEffect(() => {
+    const handleLinkClick = (event: MouseEvent) => {
+      if (isSaving || content.trim().length === 0) {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest("a") as HTMLAnchorElement | null;
+      if (!anchor || !anchor.href) {
+        return;
+      }
+
+      const href = anchor.getAttribute("href") || "";
+      if (
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:")
+      ) {
+        return;
+      }
+
+      const shouldLeave = window.confirm(
+        "You have unsaved text. Are you sure you want to leave this page?",
+      );
+      if (!shouldLeave) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener("click", handleLinkClick, true);
+    return () => {
+      document.removeEventListener("click", handleLinkClick, true);
+    };
+  }, [content, isSaving]);
+
   return (
     <>
       <div className="flex">
