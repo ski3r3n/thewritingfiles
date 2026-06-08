@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import Sidebar from "@/components/sidebar";
 import { createClient } from "@/lib/supabase/client";
 
@@ -14,12 +15,33 @@ async function addWriting(title: string, content: string) {
   console.log("Add writing response:", { data, error });
   if (error) {
     alert("Error saving writing: " + error.message);
-  } else {
-    alert("Writing saved successfully!");
-    window.location.href = "/dashboard";
+    return error;
   }
+
+  alert("Writing saved successfully!");
+  window.location.href = "/dashboard";
+  return null;
 }
+
 export default function Write() {
+  const [content, setContent] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!isSaving && content.trim().length > 0) {
+        event.preventDefault();
+        event.returnValue =
+          "You have unsaved text. Are you sure you want to leave?";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [content, isSaving]);
+
   return (
     <>
       <div className="flex">
@@ -29,22 +51,16 @@ export default function Write() {
           <p>Go make some peak. I&apos;m waiting.</p>
           <form
             className="mt-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              console.log(
-                "Title:",
-                (document.getElementById("title") as HTMLInputElement).value,
-              );
-              console.log(
-                "Content:",
-                (document.getElementById("content") as HTMLTextAreaElement)
-                  .value,
-              );
-              addWriting(
-                (document.getElementById("title") as HTMLInputElement).value,
-                (document.getElementById("content") as HTMLTextAreaElement)
-                  .value,
-              );
+              setIsSaving(true);
+              const title = (
+                document.getElementById("title") as HTMLInputElement
+              ).value;
+              const error = await addWriting(title, content);
+              if (error) {
+                setIsSaving(false);
+              }
             }}
           >
             <input
@@ -55,6 +71,8 @@ export default function Write() {
             />
             <textarea
               id="content"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
               className="w-full h-64 p-4 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Some absolute peak?"
             />
