@@ -3,6 +3,8 @@ import Sidebar from "@/components/sidebar";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import ReactMarkdown from "react-markdown";
+import Comments from "@/components/comments";
 
 const supabase = createClient();
 
@@ -101,7 +103,9 @@ export default function Writing() {
             </h2>
           </div>
           {writing && (
-            <p className="text-lg w-full whitespace-pre-wrap">{writing.data}</p>
+            <div className="prose prose-invert max-w-none text-lg w-full">
+              <ReactMarkdown>{writing.data}</ReactMarkdown>
+            </div>
           )}
           <div>
             {writing && currentUserId && writing.user_id === currentUserId && (
@@ -113,6 +117,7 @@ export default function Writing() {
               </button>
             )}
           </div>
+          <Comments writingId={writingId?.toString() || ""} />
         </div>
       </div>
     </>
