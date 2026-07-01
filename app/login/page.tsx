@@ -40,7 +40,7 @@ export default function Login() {
             <input
               type="text"
               name="email"
-              placeholder="Username"
+              placeholder="Email"
               className="w-full mb-4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
             />
             <input
